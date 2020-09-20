@@ -5,6 +5,7 @@ import java.io.Serializable;
 import common.utility.CommonUtilities;
 //주소를 상속받는 도로명주소와 지번주소
 //빌더 패턴 추가
+//test
 public class Address implements Comparable<Address>,Serializable {
 	//필수 항목
 	String name;
