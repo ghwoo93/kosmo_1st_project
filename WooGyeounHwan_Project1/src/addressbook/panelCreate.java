@@ -1,8 +1,12 @@
 package addressbook;
 
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
@@ -18,6 +22,20 @@ public class panelCreate extends JPanel{
 	JTextField tfCon;
 	
 	JButton btnSave;
+	
+	AddressBookLogic logic = AddressBookLogic.getInstance();
+	
+	ActionListener handler = new ActionListener() {
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			if(e.getSource()==btnSave) {
+				logic.setAddress(
+						tfName.getText(),tfAddr.getText(),
+						tfAge.getText(),tfCon.getText());
+				logic.printAddr();
+			}
+		}
+	};
 	
 	public panelCreate() {
 		labelName = new JLabel("이름"); 

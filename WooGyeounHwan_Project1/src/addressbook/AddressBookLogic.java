@@ -102,7 +102,7 @@ public class AddressBookLogic {
 	public void separateMainMenu(int inputMenuNum) throws NumberFormatException, IOException {
 		switch(inputMenuNum) {
 			case 1://입력
-				setAddress();
+//				setAddress();
 				break;
 			case 2://출력
 				printAddr();
@@ -112,7 +112,7 @@ public class AddressBookLogic {
 					printSubMenu(3);
 					int inputSubMenuNum = getMenuNumber();
 					try {
-						updateAddr(inputSubMenuNum);
+//						updateAddr(inputSubMenuNum);
 						break;
 					}catch (Exception e) {
 						System.out.println("메뉴는 숫자만 입력하세요");
@@ -161,7 +161,8 @@ public class AddressBookLogic {
 		}
 	}
 	//_2주소입력
-	void setAddress() {
+	void setAddress(
+			String inName,String inAddr,String inAge,String inContact) {
 		//정원이 찼는지 여부 판단
 		if(addressBook.size()==maxVal) {
 			System.out.println("주소록이 가득 찼습니다.");
@@ -169,13 +170,13 @@ public class AddressBookLogic {
 		}
 		//값 입력받고 유효성 검사
 		System.out.println("이름을 입력하세요.");
-		String name = isName();
+		String name = isName(inName);
 		System.out.println("주소를 입력하세요");
-		String addr = isAddr();
+		String addr = isAddr(inAddr);
 		System.out.println("나이");
-		int age = isAge();
+		int age = isAge(inAge);
 		System.out.println("연락처");
-		String con = isContact();
+		String con = isContact(inContact);
 		//Map<Character,List<Address>>
 		//1]밸류 타입을 null로 초기화
 		List<Address> addrListByInit = null;
@@ -198,12 +199,12 @@ public class AddressBookLogic {
 		addressBook.put(key, addrListByInit);
 	}
 	//Address 클래스 멤버 유효성 검사
-	private String isName() {
+	private String isName(String inputName) {
 		boolean isCorrect = false;
 		String name = "";
 		while(!isCorrect) {
 			try {
-				name = sc.nextLine();
+				name = inputName;
 				isCorrect = Pattern.matches("^[가-힣]*$", name);
 				if(isCorrect&&!name.equals(null)) break;
 				else System.out.println("이름은 한글만 입력");
@@ -213,12 +214,12 @@ public class AddressBookLogic {
 		}
 		return name;
 	}
-	private int isAge() {
+	private int isAge(String inputAge) {
 		boolean isCorrect = false;
 		int age = -1;
 		while(!isCorrect) {
 			try {
-				String strInt = sc.nextLine();
+				String strInt = inputAge;
 				isCorrect = 
 						Pattern.matches("^[0-9]*$", strInt);
 				if(isCorrect) {
@@ -231,12 +232,12 @@ public class AddressBookLogic {
 		}
 		return age;
 	}
-	private String isAddr() {
+	private String isAddr(String inputAddr) {
 		boolean isCorrect = false;
 		String addr = "";
 		while(!isCorrect) {
 			try {
-				addr = sc.nextLine();
+				addr = inputAddr;
 				isCorrect = Pattern.matches("^[가-힣]*$", addr);
 				if(isCorrect&&!addr.equals(null)) break;
 				else System.out.println("주소는 한글만 입력");
@@ -246,12 +247,12 @@ public class AddressBookLogic {
 		}
 		return addr;
 	}
-	private String isContact() {
+	private String isContact(String inputContact) {
 		boolean isCorrect = false;
 		String con = "";
 		while(!isCorrect) {
 			try {
-				con = sc.nextLine();
+				con = inputContact;
 				isCorrect = Pattern.matches("^[0-9]*$", con);
 				if(isCorrect&&!con.equals(null)) break;
 				else System.out.println("번호는 숫자만 입력");
@@ -272,33 +273,33 @@ public class AddressBookLogic {
 		}
 	}
 	//3.수정 
-	public void updateAddr(int input) {
-		//유효성 검사하고 업데이트
-		Address address = searchByName();
-		switch(input) {
-			case 1://이름
-				System.out.println("이름을 입력하세요.");
-				address.setName(isName());
-				break;
-			case 2://나이
-				System.out.println("나이를 입력하세요.");
-				address.setAge(isAge());
-				break;
-			case 3://주소
-				System.out.println("주소를 입력하세요");
-				address.setAddress(isAddr());
-				break;
-			case 4://연락처
-				System.out.println("연락처를 입력하세요");
-				address.setContact(isContact());
-				break;
-			case 5://이전
-				break;
-			default:
-				System.out.println("메뉴에 없는 번호입니다");
-				break;
-		}
-	}
+//	public void updateAddr(int input) {
+//		//유효성 검사하고 업데이트
+//		Address address = searchByName();
+//		switch(input) {
+//			case 1://이름
+//				System.out.println("이름을 입력하세요.");
+//				address.setName(isName());
+//				break;
+//			case 2://나이
+//				System.out.println("나이를 입력하세요.");
+//				address.setAge(isAge());
+//				break;
+//			case 3://주소
+//				System.out.println("주소를 입력하세요");
+//				address.setAddress(isAddr());
+//				break;
+//			case 4://연락처
+//				System.out.println("연락처를 입력하세요");
+//				address.setContact(isContact());
+//				break;
+//			case 5://이전
+//				break;
+//			default:
+//				System.out.println("메뉴에 없는 번호입니다");
+//				break;
+//		}
+//	}
 	//4.삭제 
 	//Map<Character,List<Address>>
 	public void deleteAddr() {

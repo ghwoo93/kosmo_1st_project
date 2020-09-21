@@ -1,6 +1,9 @@
 package addressbook;
 
 import java.awt.FlowLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.io.IOException;
 
 import javax.swing.JButton;
 import javax.swing.JPanel;
@@ -9,6 +12,21 @@ public class panelBottom extends JPanel{
 	
 	JButton btnSave;
 	JButton btnExit;
+	
+	AddressBookLogic logic = AddressBookLogic.getInstance();
+	
+	ActionListener handler = new ActionListener() {
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			if(e.getSource()==btnSave) {
+				try {
+					logic.saveAddr();
+				} catch (IOException e1) {
+					System.out.println("저장 완료");
+				}
+			}
+		}
+	};
 	
 	public panelBottom() {
 		this.setLayout(new FlowLayout(FlowLayout.RIGHT));

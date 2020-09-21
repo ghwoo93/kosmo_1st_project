@@ -17,17 +17,6 @@ public class MyFrame {
 	private JTabbedPane tabbedPane;
 	static panelCreate panelC;
 	
-	AddressBookLogic logic = AddressBookLogic.getInstance();
-	
-	ActionListener handler = new ActionListener() {
-		@Override
-		public void actionPerformed(ActionEvent e) {
-			if(e.getSource()==panelC.btnSave) {
-				logic.setAddress();
-				
-			}
-		}
-	};
 	
 	/**
 	 * Launch the application.
