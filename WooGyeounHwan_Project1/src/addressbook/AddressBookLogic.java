@@ -161,7 +161,7 @@ public class AddressBookLogic {
 		}
 	}
 	//_2주소입력
-	private void setAddress() {
+	void setAddress() {
 		//정원이 찼는지 여부 판단
 		if(addressBook.size()==maxVal) {
 			System.out.println("주소록이 가득 찼습니다.");
