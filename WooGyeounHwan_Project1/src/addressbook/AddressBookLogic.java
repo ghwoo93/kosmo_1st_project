@@ -7,7 +7,6 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.OutputStream;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
@@ -54,7 +53,6 @@ public class AddressBookLogic {
 		} catch (ClassNotFoundException e) {
 			e.getMessage();
 		}
-		
 	}
 	//Map<Character,List<Address>> addressBook
 	private void saveAddressBook() {
@@ -172,13 +170,12 @@ public class AddressBookLogic {
 		//값 입력받고 유효성 검사
 		System.out.println("이름을 입력하세요.");
 		String name = isName();
-		System.out.println("나이를 입력하세요.");
-		int age = isAge();
 		System.out.println("주소를 입력하세요");
 		String addr = isAddr();
-		System.out.println("연락처를 입력하세요");
-		String contact = isContact();
-		//값으로 생성
+		System.out.println("나이");
+		int age = isAge();
+		System.out.println("연락처");
+		String con = isContact();
 		//Map<Character,List<Address>>
 		//1]밸류 타입을 null로 초기화
 		List<Address> addrListByInit = null;
@@ -196,7 +193,7 @@ public class AddressBookLogic {
 		}
 		//주소록에 저장
 		//입력한 객체를 추가
-		addrListByInit.add(new Address(name, age, addr, contact));
+		addrListByInit.add(new Address.Builder(name, addr).setAge(age).setContact(con).build());
 		//4]맵 컬렉션에 키값으로 저장
 		addressBook.put(key, addrListByInit);
 	}
@@ -264,6 +261,7 @@ public class AddressBookLogic {
 		}
 		return con;
 	}
+	
 	//2.출력 
 	public void printAddr() {
 		Set<Character> keys = addressBook.keySet();
@@ -280,19 +278,19 @@ public class AddressBookLogic {
 		switch(input) {
 			case 1://이름
 				System.out.println("이름을 입력하세요.");
-				address.name = isName();
+				address.setName(isName());
 				break;
 			case 2://나이
 				System.out.println("나이를 입력하세요.");
-				address.age = isAge();
+				address.setAge(isAge());
 				break;
 			case 3://주소
 				System.out.println("주소를 입력하세요");
-				address.address = isAddr();
+				address.setAddress(isAddr());
 				break;
 			case 4://연락처
 				System.out.println("연락처를 입력하세요");
-				address.contact = isContact();
+				address.setContact(isContact());
 				break;
 			case 5://이전
 				break;
@@ -306,7 +304,7 @@ public class AddressBookLogic {
 	public void deleteAddr() {
 		//주소찾고
 		Address address = searchByName();
-		char key = CommonUtilities.getFirstCharacter(address.name);
+		char key = CommonUtilities.getFirstCharacter(address.getName());
 		addressBook.get(key).remove(address);
 	}
 	//이름으로 검색
@@ -316,7 +314,7 @@ public class AddressBookLogic {
 			String inputName = sc.nextLine();
 			char key = CommonUtilities.getFirstCharacter(inputName);
 			for (Address address : addressBook.get(key)) {
-				if(address.name.equals(inputName)) 
+				if(address.getName().equals(inputName)) 
 					return address;
 			}
 			System.out.println("존재하지 않는 이름이에요. 다시입력해주세요.");
@@ -349,7 +347,7 @@ public class AddressBookLogic {
 				key = CommonUtilities.getFirstCharacter(name);
 				resultList = addressBook.get(key);
 				for (Address address : resultList) {
-					if(address.name.equals(name))
+					if(address.getName().equals(name))
 						System.out.println(address);
 				}
 				break;
@@ -359,7 +357,7 @@ public class AddressBookLogic {
 				Set<Character> resultSet = addressBook.keySet();
 				for (Character cha : resultSet) {
 					for (Address address : addressBook.get(cha)) {
-						if(address.age==age)
+						if(address.getAge()==age)
 							System.out.println(address);
 					}
 				}
@@ -370,7 +368,7 @@ public class AddressBookLogic {
 				key = CommonUtilities.getFirstCharacter(addr);
 				resultList = addressBook.get(key);
 				for (Address address : resultList) {
-					if(address.address.equals(addr))
+					if(address.getAddress().equals(addr))
 						System.out.println(address);
 				}
 				break;
@@ -380,7 +378,7 @@ public class AddressBookLogic {
 				key = CommonUtilities.getFirstCharacter(contact);
 				resultList = addressBook.get(key);
 				for (Address address : resultList) {
-					if(address.contact.equals(contact))
+					if(address.getContact().equals(contact))
 						System.out.println(address);
 				}
 				break;
