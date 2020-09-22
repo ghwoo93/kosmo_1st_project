@@ -23,8 +23,9 @@ public class panelBottom extends JPanel{
 			if(e.getSource()==btnSave) {
 				try {
 					logic.saveAddr();
+					logic.printAddr();
 				} catch (IOException e1) {
-					System.out.println("저장 완료");
+					System.out.println("저장 완료 실패");
 				}
 			}
 		}
@@ -36,6 +37,7 @@ public class panelBottom extends JPanel{
 		btnExit = new JButton("Exit");
 		this.add(btnSave);
 		this.add(btnExit);
+		btnSave.addActionListener(handler);
 	}
 	
 }

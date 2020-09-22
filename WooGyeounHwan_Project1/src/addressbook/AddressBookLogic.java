@@ -24,16 +24,16 @@ import common.utility.CommonUtilities;
 public class AddressBookLogic {
 	private static Map<Character,List<Address>> addressBook;
 	private static Scanner sc;
-	private static int maxVal;
+	private static int maxVal=50;
 	
 	private AddressBookLogic() {
 		//파일이 존재하는 확인하고
 		//파일이 존재한다면 읽어서 생성하고 addrbook에 참조
 		//파일이 없으면 자료구조 생성
 		addressBook = new HashMap<Character, List<Address>>();
-		sc = new Scanner(System.in);
-		System.out.println("최대 값을 정하시오");
-		maxVal=Integer.parseInt(sc.nextLine());
+//		sc = new Scanner(System.in);
+//		System.out.println("최대 값을 정하시오");
+//		maxVal=Integer.parseInt(sc.nextLine());
 		getAddressBook();
 	}
 	
@@ -272,6 +272,9 @@ public class AddressBookLogic {
 			}
 		}
 	}
+	public Map<Character,List<Address>> getAddrBook(){
+		return addressBook;
+	}
 	//3.수정 
 //	public void updateAddr(int input) {
 //		//유효성 검사하고 업데이트
@@ -395,7 +398,9 @@ public class AddressBookLogic {
 	public void saveAddr() throws IOException {
 		//데이터소스 AddressBookLogic.addressBook
 		//데이터목적지 src/addressbook/AddressBook.txt
-		FileOutputStream fos = new FileOutputStream("src/addressbook/AddressBook.txt");
+		FileOutputStream fos = 
+				new FileOutputStream(
+						"src/addressbook/AddressBook.txt");
 		for (Character init : addressBook.keySet()) {
 			for (Address address : addressBook.get(init)) {
 				fos.write(address.toString().getBytes());

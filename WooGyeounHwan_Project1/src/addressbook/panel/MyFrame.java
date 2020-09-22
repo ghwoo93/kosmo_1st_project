@@ -1,21 +1,22 @@
 package addressbook.panel;
 
 import java.awt.EventQueue;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import java.awt.BorderLayout;
 import javax.swing.JTabbedPane;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 public class MyFrame {
 
 	private JFrame frame;
-	private JPanel bottomP;
 	private JTabbedPane tabbedPane;
-	static panelCreate panelC;
+	private panelBottom bottomP;
+	private panelCreate panelC;
+	private panelList panelL;
 	
 	
 	/**
@@ -50,25 +51,24 @@ public class MyFrame {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		bottomP = new panelBottom();
-		frame.getContentPane().add(bottomP, BorderLayout.SOUTH);
-		
 		tabbedPane = new JTabbedPane(JTabbedPane.TOP);
+		panelC = new panelCreate();
+		panelL = new panelList();
+		JPanel panel_3 = new JPanel();
+		JPanel panel_4 = new JPanel();
+		JPanel panel_5 = new JPanel();
+		
+		frame.getContentPane().add(bottomP, BorderLayout.SOUTH);
 		frame.getContentPane().add(tabbedPane, BorderLayout.CENTER);
 		
-		panelC = new panelCreate();
 		tabbedPane.addTab("입력", null, panelC, null);
-		panelC.setLayout(null);
 		
-		JPanel panel_2 = new JPanel();
-		tabbedPane.addTab("출력", null, panel_2, null);
+		tabbedPane.addTab("출력", null, panelL, null);
 		
-		JPanel panel_3 = new JPanel();
 		tabbedPane.addTab("수정", null, panel_3, null);
 		
-		JPanel panel_4 = new JPanel();
 		tabbedPane.addTab("삭제", null, panel_4, null);
 		
-		JPanel panel_5 = new JPanel();
 		tabbedPane.addTab("검색", null, panel_5, null);
 	}
 }
