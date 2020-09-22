@@ -73,6 +73,8 @@ public class panelCreate extends JPanel{
 		btnSave = new JButton("즈장");
 		btnSave.setBounds(63, 224, 97, 23);
 		add(btnSave);
+		btnSave.addActionListener(handler);
+		
 	}
 	
 	
