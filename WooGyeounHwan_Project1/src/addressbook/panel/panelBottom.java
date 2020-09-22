@@ -1,4 +1,4 @@
-package addressbook;
+package addressbook.panel;
 
 import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
@@ -7,6 +7,8 @@ import java.io.IOException;
 
 import javax.swing.JButton;
 import javax.swing.JPanel;
+
+import addressbook.AddressBookLogic;
 
 public class panelBottom extends JPanel{
 	

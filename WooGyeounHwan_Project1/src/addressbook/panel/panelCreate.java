@@ -1,4 +1,4 @@
-package addressbook;
+package addressbook.panel;
 
 
 import java.awt.event.ActionEvent;
@@ -9,6 +9,8 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+
+import addressbook.AddressBookLogic;
 
 public class panelCreate extends JPanel{
 	JLabel labelName;

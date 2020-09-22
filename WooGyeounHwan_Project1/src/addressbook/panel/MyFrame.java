@@ -1,4 +1,4 @@
-package addressbook;
+package addressbook.panel;
 
 import java.awt.EventQueue;
 
