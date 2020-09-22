@@ -10,6 +10,9 @@ import addressbook.AddressBookLogic;
 import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.util.Set;
@@ -25,14 +28,6 @@ public class panelList extends JPanel {
 	
 	AddressBookLogic logic = AddressBookLogic.getInstance();
 	
-	WindowAdapter handler = new WindowAdapter() {
-		@Override
-		public void windowGainedFocus(WindowEvent e) {
-			super.windowGainedFocus(e);
-			setRow();
-		}
-	};
-	
 	/**
 	 * Create the panel.
 	 */
@@ -42,38 +37,39 @@ public class panelList extends JPanel {
 	public void initialize() {
 		setLayout(new BorderLayout(0, 0));
 		
-		tblCol.addElement("이름");
-		tblCol.addElement("주소");
-		tblCol.addElement("나이");
-		tblCol.addElement("연락처");
-		
+		tblCol.add("이름");
+		tblCol.add("주소");
+		tblCol.add("나이");
+		tblCol.add("연락처");
 		model = new DefaultTableModel(tblCol,0);
 		table = new JTable(model);
-		
 		setRow();
-		
 		JScrollPane scrollPane = new JScrollPane(table);
 		add(scrollPane, BorderLayout.CENTER);
+		table.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				System.out.println("이벤트발생");
+				setRow();
+			}
+		});
 	}
 	
 	public void setRow() {
+		model = new DefaultTableModel(tblCol,0);
+		table.setModel(model);
 		Set<Character> keys = logic.getAddrBook().keySet();
 		for (Character key : keys) {
 			for (Address addr : logic.getAddrBook().get(key)) {
 				//뷰단 출력
-				tblRow.addElement(addr.getName());
-				tblRow.addElement(addr.getAddress());
-				tblRow.addElement(Integer.valueOf(addr.getAge()).toString());
-				tblRow.addElement(addr.getContact());
+				tblRow.add(addr.getName());
+				tblRow.add(addr.getAddress());
+				tblRow.add(Integer.valueOf(addr.getAge()).toString());
+				tblRow.add(addr.getContact());
 				model.addRow(tblRow);
-				//메모리저장
-//				logic.setAddress(
-//						addr.getName(), addr.getAddress(), 
-//						Integer.valueOf(addr.getAge()).toString(), 
-//						addr.getContact());
 			}
 		}
-		model.fireTableDataChanged();
+//		model.fireTableDataChanged();
 	}
 
 }
