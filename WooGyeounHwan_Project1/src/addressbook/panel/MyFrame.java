@@ -1,8 +1,6 @@
 package addressbook.panel;
 
 import java.awt.EventQueue;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -17,6 +15,8 @@ public class MyFrame {
 	private panelBottom bottomP;
 	private panelCreate panelC;
 	private panelList panelL;
+	private panelDelete panelD;
+	private panelUpdate panelU;
 	
 	
 	/**
@@ -54,7 +54,8 @@ public class MyFrame {
 		tabbedPane = new JTabbedPane(JTabbedPane.TOP);
 		panelC = new panelCreate();
 		panelL = new panelList();
-		JPanel panel_3 = new JPanel();
+		panelD = new panelDelete();
+		panelU = new panelUpdate();
 		JPanel panel_4 = new JPanel();
 		JPanel panel_5 = new JPanel();
 		
@@ -65,9 +66,9 @@ public class MyFrame {
 		
 		tabbedPane.addTab("출력", null, panelL, null);
 		
-		tabbedPane.addTab("수정", null, panel_3, null);
+		tabbedPane.addTab("수정", null, panelU, null);
 		
-		tabbedPane.addTab("삭제", null, panel_4, null);
+		tabbedPane.addTab("삭제", null, panelD, null);
 		
 		tabbedPane.addTab("검색", null, panel_5, null);
 	}

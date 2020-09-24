@@ -55,7 +55,7 @@ public class AddressBookLogic {
 		}
 	}
 	//Map<Character,List<Address>> addressBook
-	private void saveAddressBook() {
+	public void saveAddressBook() {
 		try {
 			ObjectOutputStream oos = 
 					new ObjectOutputStream(
@@ -120,7 +120,7 @@ public class AddressBookLogic {
 				}
 				break;
 			case 4://삭제
-				deleteAddr();
+//				deleteAddr();
 				break;
 			case 5://검색
 				while(true) {
@@ -276,9 +276,13 @@ public class AddressBookLogic {
 		return addressBook;
 	}
 	//3.수정 
-//	public void updateAddr(int input) {
-//		//유효성 검사하고 업데이트
-//		Address address = searchByName();
+	public void updateAddr(Address address) {
+		//유효성 검사하고 업데이트
+		
+		address.setName(isName(address.getName()));
+		address.setAge(isAge(Integer.valueOf(address.getAge()).toString()));
+		address.setAddress(isAddr(address.getAddress()));
+		address.setContact(isContact(address.getContact()));
 //		switch(input) {
 //			case 1://이름
 //				System.out.println("이름을 입력하세요.");
@@ -302,20 +306,20 @@ public class AddressBookLogic {
 //				System.out.println("메뉴에 없는 번호입니다");
 //				break;
 //		}
-//	}
+	}
 	//4.삭제 
 	//Map<Character,List<Address>>
-	public void deleteAddr() {
+	public Address deleteAddr(String name) {
 		//주소찾고
-		Address address = searchByName();
+		Address address = searchByName(name);
 		char key = CommonUtilities.getFirstCharacter(address.getName());
-		addressBook.get(key).remove(address);
+		return addressBook.get(key).remove(addressBook.get(key).indexOf(address));
 	}
 	//이름으로 검색
-	public Address searchByName() {
+	public Address searchByName(String name) {
 		System.out.println("성함을 알려주세요");
 		while(true) {
-			String inputName = sc.nextLine();
+			String inputName = isName(name);
 			char key = CommonUtilities.getFirstCharacter(inputName);
 			for (Address address : addressBook.get(key)) {
 				if(address.getName().equals(inputName)) 
@@ -395,6 +399,7 @@ public class AddressBookLogic {
 	}
 	//6.파일저장
 	//Map<Character,List<Address>> 초성 이름 나이 주소 연락처
+	/*
 	public void saveAddr() throws IOException {
 		//데이터소스 AddressBookLogic.addressBook
 		//데이터목적지 src/addressbook/AddressBook.txt
@@ -408,8 +413,9 @@ public class AddressBookLogic {
 			}
 		}
 		fos.close();
-	}
+	}*/
 	//_1.파일불러오기
+	/*
 	public void loadAddr() throws IOException {
 		//데이터소스 src/addressbook/AddressBook.txt
 		//데이터목적지 AddressBookLogic.addressBook
@@ -421,7 +427,7 @@ public class AddressBookLogic {
 		out.close();
 //		Byte.toString();
 		
-	}
+	}*/
 	//9.종료
 	public void exitAddrBook() {
 		System.out.println("프로그램을 종료합니다");

@@ -22,11 +22,13 @@ public class panelBottom extends JPanel{
 		public void actionPerformed(ActionEvent e) {
 			if(e.getSource()==btnSave) {
 				try {
-					logic.saveAddr();
+					logic.saveAddressBook();
 					logic.printAddr();
-				} catch (IOException e1) {
+				} catch (Exception e1) {
 					System.out.println("저장 완료 실패");
 				}
+			}else if(e.getSource()==btnExit) {
+				logic.exitAddrBook();
 			}
 		}
 	};
@@ -38,6 +40,7 @@ public class panelBottom extends JPanel{
 		this.add(btnSave);
 		this.add(btnExit);
 		btnSave.addActionListener(handler);
+		btnExit.addActionListener(handler);
 	}
 	
 }
