@@ -56,9 +56,17 @@ public class MyFrame {
 		panelL = new panelList();
 		panelD = new panelDelete();
 		panelU = new panelUpdate();
-		JPanel panel_4 = new JPanel();
 		JPanel panel_5 = new JPanel();
 		
+		/*
+		 * 리스트 패널일때 추가버튼
+		 * 그안에 추가 페이지 생성
+		 * 추가페이지에서 객체넘겨줌
+		 */
+		
+		if(this.panelL.hasFocus()) {
+			bottomP.add(bottomP.btnSave);
+		}
 		frame.getContentPane().add(bottomP, BorderLayout.SOUTH);
 		frame.getContentPane().add(tabbedPane, BorderLayout.CENTER);
 		

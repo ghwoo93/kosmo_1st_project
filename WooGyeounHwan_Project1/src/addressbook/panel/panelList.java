@@ -30,7 +30,7 @@ public class panelList extends JPanel{
 	public void initialize() {
 		setLayout(new BorderLayout(0, 0));
 		
-		//맨처음일때만 돌아주고
+		//맨처음 데이터 생성
 		model = new DefaultTableModel(initRow(), getHeaderVector());
 		table = new JTable(model);
 		scrollPane = new JScrollPane(table);
@@ -49,7 +49,6 @@ public class panelList extends JPanel{
 				}
 			}
 		});
-//		table.getModel().addTableModelListener(this);
 	}
 	public void tableRefresh() {
 		model=(DefaultTableModel)table.getModel();
@@ -84,17 +83,18 @@ public class panelList extends JPanel{
 		for (Character key : keys) {
 			for (Address addr : logic.getAddrBook().get(key)) {
 				//이름 검색을 해서 없을시에 그린다
-				if(!model.getDataVector().contains(addr.getName())) {
+//				if(!model.getDataVector().contains(addr.getName())) {
 					addrRow = new Vector<String>();
 					addrRow.add(addr.getName());
 					addrRow.add(addr.getAddress());
 					addrRow.add(Integer.valueOf(addr.getAge()).toString());
 					addrRow.add(addr.getContact());
 					
-					}
-				}
+//				}
+			}
 		}
-		model.insertRow(initRow().size()-1, addrRow);
+//		model.insertRow(initRow().size()-1, addrRow);
+		model.addRow(addrRow);
 		return addrRow;
 	}
 	

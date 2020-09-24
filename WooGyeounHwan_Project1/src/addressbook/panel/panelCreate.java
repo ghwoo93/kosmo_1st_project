@@ -33,6 +33,7 @@ public class panelCreate extends JPanel{
 				logic.setAddress(
 						tfName.getText(),tfAddr.getText(),
 						tfAge.getText(),tfCon.getText());
+				System.out.println(logic.getAddrBook().size());
 				logic.printAddr();
 			}
 		}

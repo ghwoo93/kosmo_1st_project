@@ -14,6 +14,7 @@ public class panelBottom extends JPanel{
 	
 	JButton btnSave;
 	JButton btnExit;
+	JButton btnAdd;
 	
 	AddressBookLogic logic = AddressBookLogic.getInstance();
 	
@@ -37,10 +38,13 @@ public class panelBottom extends JPanel{
 		this.setLayout(new FlowLayout(FlowLayout.RIGHT));
 		btnSave = new JButton("Save");
 		btnExit = new JButton("Exit");
+		btnAdd = new JButton("Add");
 		this.add(btnSave);
 		this.add(btnExit);
 		btnSave.addActionListener(handler);
 		btnExit.addActionListener(handler);
+		
+		
 	}
 	
 }
