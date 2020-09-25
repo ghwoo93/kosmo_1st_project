@@ -1,13 +1,18 @@
 package addressbook.panel;
 
+import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.JTable;
+import javax.swing.event.TableModelEvent;
+import javax.swing.event.TableModelListener;
 import javax.swing.table.DefaultTableModel;
 
 import addressbook.Address;
 import addressbook.AddressBookLogic;
 
 import java.awt.BorderLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.Set;
@@ -20,6 +25,9 @@ public class panelList extends JPanel{
 	private JScrollPane scrollPane;
 	private static Vector<String> tblCol = new Vector<String>();
 	private DefaultTableModel model;
+	private JPanel tableBottom;
+	
+	private JButton refreshBtn;
 	
 	AddressBookLogic logic = AddressBookLogic.getInstance();
 	
@@ -29,33 +37,35 @@ public class panelList extends JPanel{
 	
 	public void initialize() {
 		setLayout(new BorderLayout(0, 0));
+		tableBottom = new JPanel();
+		refreshBtn = new JButton("refresh");
 		
 		//맨처음 데이터 생성
 		model = new DefaultTableModel(initRow(), getHeaderVector());
 		table = new JTable(model);
 		scrollPane = new JScrollPane(table);
+		
+		tableBottom.add(refreshBtn);
+		add(tableBottom,BorderLayout.SOUTH);
 		add(scrollPane, BorderLayout.CENTER);
-
-		table.addMouseListener(new MouseAdapter() {
+		
+		refreshBtn.addActionListener(new ActionListener() {
+			
 			@Override
-			public void mouseClicked(MouseEvent e) {
-				if (e.getButton() == 1) {
-					int row = table.getSelectedRow();
-					int col = table.getSelectedColumn();
-					System.out.println("row:" + model.getValueAt(row, col));
-					System.out.println("row:" + row + "col:" + col);
-					System.out.println(getRow().size());
-					tableRefresh();
-				}
+			public void actionPerformed(ActionEvent e) {
+				tableRefresh();
+				
 			}
 		});
+		
 	}
 	public void tableRefresh() {
-		model=(DefaultTableModel)table.getModel();
-//		model=new DefaultTableModel(initRow(), getHeaderVector());
-//		model.insertRow(initRow().size()-1, getRow());
-		//모델을 새로 만들고 테이블에 모델을 붙인다
-		table = new JTable(model);
+		model = (DefaultTableModel)table.getModel();
+		while(model.getRowCount()>0) {
+			model.removeRow(0);
+		}
+		getRow();
+//		model.addRow(getRow());
 	}
 	//맨첨
 	public Vector<Vector<String>> initRow() {
@@ -69,8 +79,6 @@ public class panelList extends JPanel{
 				addrRow.add(addr.getAddress());
 				addrRow.add(Integer.valueOf(addr.getAge()).toString());
 				addrRow.add(addr.getContact());
-				//여기서 벡터를 넘겨준다 table
-				tblRow.add(addrRow);
 			}
 		}
 		//두번째일때 부터는 실행
@@ -83,18 +91,14 @@ public class panelList extends JPanel{
 		for (Character key : keys) {
 			for (Address addr : logic.getAddrBook().get(key)) {
 				//이름 검색을 해서 없을시에 그린다
-//				if(!model.getDataVector().contains(addr.getName())) {
 					addrRow = new Vector<String>();
 					addrRow.add(addr.getName());
 					addrRow.add(addr.getAddress());
 					addrRow.add(Integer.valueOf(addr.getAge()).toString());
 					addrRow.add(addr.getContact());
-					
-//				}
+					model.addRow(addrRow);
 			}
 		}
-//		model.insertRow(initRow().size()-1, addrRow);
-		model.addRow(addrRow);
 		return addrRow;
 	}
 	

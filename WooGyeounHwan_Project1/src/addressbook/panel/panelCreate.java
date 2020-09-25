@@ -65,7 +65,7 @@ public class panelCreate extends JPanel{
 		tfAge.setBounds(95, 133, 116, 21);
 		this.add(tfAge);
 		tfAge.setColumns(10);
-		tfCon = new JTextField("010-1234-5678");
+		tfCon = new JTextField("010");
 		tfCon.setBounds(95, 182, 116, 21);
 		this.add(tfCon);
 		tfCon.setColumns(10);

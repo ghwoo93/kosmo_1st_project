@@ -31,9 +31,6 @@ public class AddressBookLogic {
 		//파일이 존재한다면 읽어서 생성하고 addrbook에 참조
 		//파일이 없으면 자료구조 생성
 		addressBook = new HashMap<Character, List<Address>>();
-//		sc = new Scanner(System.in);
-//		System.out.println("최대 값을 정하시오");
-//		maxVal=Integer.parseInt(sc.nextLine());
 		getAddressBook();
 	}
 	
@@ -110,7 +107,7 @@ public class AddressBookLogic {
 			case 3://수정
 				while(true) {
 					printSubMenu(3);
-					int inputSubMenuNum = getMenuNumber();
+//					int inputSubMenuNum = getMenuNumber();
 					try {
 //						updateAddr(inputSubMenuNum);
 						break;
