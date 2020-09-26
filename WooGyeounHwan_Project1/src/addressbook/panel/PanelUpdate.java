@@ -41,12 +41,12 @@ public class PanelUpdate extends JPanel{
 				} catch(NullPointerException e1){
 					JOptionPane
 					.showConfirmDialog(
-							null, "존재하지 않는 이름입니다","입력 오류",
+							tfAddr, "존재하지 않는 이름입니다","입력 오류",
 							JOptionPane.CLOSED_OPTION,JOptionPane.ERROR_MESSAGE);
 				} catch (NameException e2) {
 					JOptionPane
 					.showConfirmDialog(
-							null, e2.getMessage(),"입력 오류",
+							tfAddr, e2.getMessage(),"입력 오류",
 							JOptionPane.CLOSED_OPTION,JOptionPane.ERROR_MESSAGE);
 				}
 				tfAddr.setText(addr.getAddress());

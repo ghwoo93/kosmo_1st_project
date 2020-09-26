@@ -42,11 +42,9 @@ public class PanelCreate extends JPanel{
 				} catch (NameException | NotAddr | NotAge | NotContact e1) {
 					JOptionPane
 					.showConfirmDialog(
-							null, e1.getMessage(),"입력 오류",
+							tfAddr, e1.getMessage(),"입력 오류",
 							JOptionPane.CLOSED_OPTION,JOptionPane.ERROR_MESSAGE);
 				}
-				
-				System.out.println(logic.getAddrBook().size());
 				logic.printAddr();
 			}
 		}

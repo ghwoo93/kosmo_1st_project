@@ -39,7 +39,7 @@ public class PanelDelete extends JPanel{
 				} catch (NameException e1) {
 					JOptionPane
 					.showConfirmDialog(
-							null, e1.getMessage(),"입력 오류",
+							tfAddr, e1.getMessage(),"입력 오류",
 							JOptionPane.CLOSED_OPTION,JOptionPane.ERROR_MESSAGE);
 				}
 				tfAge.setText(Integer.valueOf(addr.getAge()).toString());

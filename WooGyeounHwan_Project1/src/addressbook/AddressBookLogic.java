@@ -84,20 +84,6 @@ public class AddressBookLogic {
 		return new AddressBookLogic();
 	}
 	
-	//1.입력
-	//_1메뉴입력
-	public int getMenuNumber() {
-		int menuNum = -1;
-		while(true) {
-			try {
-				String menu = sc.nextLine();
-				menuNum = Integer.parseInt(menu);
-				return menuNum;
-			} catch (Exception e) {
-				System.out.println("메뉴는 숫자만 입력하시오");
-			}
-		}
-	}
 	//_2주소입력
 	public void setAddress(
 			String inName,String inAddr,String inAge,String inContact) 
@@ -109,15 +95,11 @@ public class AddressBookLogic {
 		if(!searchByName(inName).equals(null)) {
 			throw new NameException("존재하는 이름입니다");
 		}
-		System.out.println("이름을 입력하세요.");
 		String name = CommonUtilities.isName(inName);
-		System.out.println("주소를 입력하세요");
 		String addr = CommonUtilities.isAddr(inAddr);
-		System.out.println("나이");
 		int age=0;
 		if(!inAge.equals(""))
 			age = CommonUtilities.isAge(inAge);
-		System.out.println("연락처");
 		String con=null;
 		if(!inContact.equals(""))
 			con = CommonUtilities.isContact(inContact);
