@@ -3,7 +3,7 @@ package addressbook.panel;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 
-public interface panelStructure {
+public interface PanelStructure {
 	JLabel labelName = new JLabel("이름");
 	JLabel labelAddr = new JLabel("주소");
 	JLabel labelAge = new JLabel("나이");

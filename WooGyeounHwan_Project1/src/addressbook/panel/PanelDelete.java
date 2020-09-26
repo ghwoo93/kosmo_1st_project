@@ -11,8 +11,9 @@ import javax.swing.JTextField;
 
 import addressbook.Address;
 import addressbook.AddressBookLogic;
+import addressbook.exception.NameException;
 
-public class panelDelete extends JPanel{
+public class PanelDelete extends JPanel{
 	JLabel labelName;
 	JLabel labelAddr;
 	JLabel labelAge;
@@ -32,18 +33,27 @@ public class panelDelete extends JPanel{
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			if(e.getSource()==btnDel) {
-				
-				Address addr = logic.deleteAddr(tfName.getText());
+				Address addr=null;
+				try {
+					addr = logic.deleteAddr(tfName.getText());
+				} catch (NameException e1) {
+					JOptionPane
+					.showConfirmDialog(
+							null, e1.getMessage(),"입력 오류",
+							JOptionPane.CLOSED_OPTION,JOptionPane.ERROR_MESSAGE);
+				}
 				tfAge.setText(Integer.valueOf(addr.getAge()).toString());
 				tfAddr.setText(addr.getAddress());
 				tfCon.setText(addr.getContact());
 				JOptionPane
-					.showConfirmDialog(null, tfName.getText()+" 삭제완료", "삭제 확인", JOptionPane.CLOSED_OPTION);
+					.showConfirmDialog(
+							null, tfName.getText()+" 삭제완료", "삭제 확인", 
+							JOptionPane.CLOSED_OPTION);
 				}
 		}
 	};
 	
-	public panelDelete() {
+	public PanelDelete() {
 		labelNotice = new JLabel("삭제할");
 		add(labelNotice);
 		labelNotice.setBounds(32, 30, 57, 15);

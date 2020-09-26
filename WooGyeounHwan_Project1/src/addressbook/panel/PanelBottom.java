@@ -10,7 +10,7 @@ import javax.swing.JPanel;
 
 import addressbook.AddressBookLogic;
 
-public class panelBottom extends JPanel{
+public class PanelBottom extends JPanel{
 	
 	private JButton btnSave;
 	private JButton btnExit;
@@ -34,7 +34,7 @@ public class panelBottom extends JPanel{
 		}
 	};
 	
-	public panelBottom() {
+	public PanelBottom() {
 		this.setLayout(new FlowLayout(FlowLayout.RIGHT));
 		btnSave = new JButton("Save");
 		btnExit = new JButton("Exit");

@@ -6,12 +6,17 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 import addressbook.AddressBookLogic;
+import addressbook.exception.NotAddr;
+import addressbook.exception.NotAge;
+import addressbook.exception.NotContact;
+import addressbook.exception.NameException;
 
-public class panelCreate extends JPanel{
+public class PanelCreate extends JPanel{
 	private JLabel labelName;
 	private JLabel labelAddr;
 	private JLabel labelAge;
@@ -30,16 +35,24 @@ public class panelCreate extends JPanel{
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			if(e.getSource()==btnSave) {
-				logic.setAddress(
-						tfName.getText(),tfAddr.getText(),
-						tfAge.getText(),tfCon.getText());
+				try {
+					logic.setAddress(
+							tfName.getText(),tfAddr.getText(),
+							tfAge.getText(),tfCon.getText());
+				} catch (NameException | NotAddr | NotAge | NotContact e1) {
+					JOptionPane
+					.showConfirmDialog(
+							null, e1.getMessage(),"입력 오류",
+							JOptionPane.CLOSED_OPTION,JOptionPane.ERROR_MESSAGE);
+				}
+				
 				System.out.println(logic.getAddrBook().size());
 				logic.printAddr();
 			}
 		}
 	};
 	
-	public panelCreate() {
+	public PanelCreate() {
 		labelName = new JLabel("이름"); 
 		labelName.setBounds(32, 44, 57, 15);
 		this.add(labelName);

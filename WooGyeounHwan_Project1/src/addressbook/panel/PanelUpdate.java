@@ -11,8 +11,9 @@ import javax.swing.JTextField;
 
 import addressbook.Address;
 import addressbook.AddressBookLogic;
+import addressbook.exception.NameException;
 
-public class panelUpdate extends JPanel{
+public class PanelUpdate extends JPanel{
 	private JLabel labelName;
 	private JLabel labelAddr;
 	private JLabel labelAge;
@@ -35,7 +36,19 @@ public class panelUpdate extends JPanel{
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			if(e.getSource()==btnSearch) {
-				addr = logic.searchByName(tfName.getText());
+				try {
+					addr = logic.searchByName(tfName.getText());
+				} catch(NullPointerException e1){
+					JOptionPane
+					.showConfirmDialog(
+							null, "존재하지 않는 이름입니다","입력 오류",
+							JOptionPane.CLOSED_OPTION,JOptionPane.ERROR_MESSAGE);
+				} catch (NameException e2) {
+					JOptionPane
+					.showConfirmDialog(
+							null, e2.getMessage(),"입력 오류",
+							JOptionPane.CLOSED_OPTION,JOptionPane.ERROR_MESSAGE);
+				}
 				tfAddr.setText(addr.getAddress());
 				tfAge.setText(Integer.valueOf(addr.getAge()).toString());
 				tfCon.setText(addr.getContact());
@@ -49,7 +62,7 @@ public class panelUpdate extends JPanel{
 		}
 	};
 	
-	public panelUpdate() {
+	public PanelUpdate() {
 		labelNotice = new JLabel("수정할");
 		add(labelNotice);
 		labelNotice.setBounds(32, 30, 57, 15);

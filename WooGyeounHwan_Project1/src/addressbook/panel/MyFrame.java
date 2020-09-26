@@ -12,11 +12,11 @@ public class MyFrame {
 
 	private JFrame frame;
 	private JTabbedPane tabbedPane;
-	private panelBottom bottomP;
-	private panelCreate panelC;
-	private panelList panelL;
-	private panelDelete panelD;
-	private panelUpdate panelU;
+	private PanelBottom bottomP;
+	private PanelCreate panelC;
+	private PanelList panelL;
+	private PanelDelete panelD;
+	private PanelUpdate panelU;
 	
 	
 	/**
@@ -44,12 +44,12 @@ public class MyFrame {
 		frame.setBounds(100, 100, 623, 465);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
-		bottomP = new panelBottom();
+		bottomP = new PanelBottom();
 		tabbedPane = new JTabbedPane(JTabbedPane.TOP);
-		panelC = new panelCreate();
-		panelL = new panelList();
-		panelD = new panelDelete();
-		panelU = new panelUpdate();
+		panelC = new PanelCreate();
+		panelL = new PanelList();
+		panelD = new PanelDelete();
+		panelU = new PanelUpdate();
 		
 		
 		frame.getContentPane().add(bottomP, BorderLayout.SOUTH);

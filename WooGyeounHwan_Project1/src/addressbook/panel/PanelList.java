@@ -3,25 +3,25 @@ package addressbook.panel;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTable;
 import javax.swing.JTextField;
-import javax.swing.event.TableModelEvent;
-import javax.swing.event.TableModelListener;
 import javax.swing.table.DefaultTableModel;
 
 import addressbook.Address;
 import addressbook.AddressBookLogic;
+import addressbook.exception.NotAddr;
+import addressbook.exception.NotAge;
+import addressbook.exception.NotContact;
+import addressbook.exception.NotInit;
+import addressbook.exception.NameException;
 import common.utility.CommonUtilities;
 
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
-import java.awt.Rectangle;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.Set;
@@ -29,7 +29,7 @@ import java.util.Vector;
 
 import javax.swing.JScrollPane;
 
-public class panelList extends JPanel{
+public class PanelList extends JPanel{
 	private JTable table;
 	private JScrollPane scrollPane;
 	private static Vector<String> tblCol = new Vector<String>();
@@ -46,7 +46,7 @@ public class panelList extends JPanel{
 	
 	AddressBookLogic logic = AddressBookLogic.getInstance();
 	
-	public panelList() {
+	public PanelList() {
 		initialize();
 	}
 	
@@ -83,9 +83,15 @@ public class panelList extends JPanel{
 			public void actionPerformed(ActionEvent e) {
 				tableRefresh();
 				try {
-					searchAddrs(searchColumn.getSelectedItem(),searchTf.getText());
-				} catch (Exception e1) {
-					//경고창
+					searchAddrs(
+							searchColumn.getSelectedItem(),
+							searchTf.getText());
+				} catch (
+						NotInit | NameException | NotAddr | NotAge | NotContact e1) {
+					JOptionPane
+					.showConfirmDialog(
+							null, e1.getMessage(),"입력 오류",
+							JOptionPane.CLOSED_OPTION,JOptionPane.ERROR_MESSAGE);
 				}
 			}
 		});
@@ -161,7 +167,8 @@ public class panelList extends JPanel{
 	
 	//tf.gettext 확인 후 tf랑 숫자 파라미터 넘겨줌
 	//케이스 별로 체크해서 목록에 뿌리기
-	public void searchAddrs(Object searchColumn,String searchTf) throws Exception {
+	public void searchAddrs(Object searchColumn,String searchTf) 
+			throws NotInit, NameException, NotAddr, NotAge, NotContact  {
 		System.out.println(searchColumn+":"+searchTf);
 		Vector<String> addrRow=null;
 		for(Address addr :logic.searchAddrBook(searchColumn, searchTf)) {
