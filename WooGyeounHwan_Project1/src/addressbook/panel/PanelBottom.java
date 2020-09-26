@@ -1,9 +1,11 @@
 package addressbook.panel;
 
 import java.awt.FlowLayout;
+import java.awt.Graphics;
+import java.awt.Image;
+import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.IOException;
 
 import javax.swing.JButton;
 import javax.swing.JPanel;
@@ -15,6 +17,7 @@ public class PanelBottom extends JPanel{
 	private JButton btnSave;
 	private JButton btnExit;
 	private JButton btnAdd;
+	private Image img;
 	
 	AddressBookLogic logic = AddressBookLogic.getInstance();
 	
@@ -36,6 +39,10 @@ public class PanelBottom extends JPanel{
 	
 	public PanelBottom() {
 		this.setLayout(new FlowLayout(FlowLayout.RIGHT));
+		img = 
+			Toolkit
+				.getDefaultToolkit()
+					.createImage("src/addressbook/image/P0i72.gif");
 		btnSave = new JButton("Save");
 		btnExit = new JButton("Exit");
 		btnAdd = new JButton("Add");
@@ -43,8 +50,15 @@ public class PanelBottom extends JPanel{
 		this.add(btnExit);
 		btnSave.addActionListener(handler);
 		btnExit.addActionListener(handler);
-		
-		
+	}
+	
+	@Override
+	protected void paintComponent(Graphics g) {
+		super.paintComponent(g);
+		if (img != null) { 
+			g.drawImage(img, 0, 0, this); 
+		}
+
 	}
 	
 }
