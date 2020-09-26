@@ -41,6 +41,7 @@ public class MyFrame {
 	
 	private void initialize() {
 		frame = new JFrame();
+		frame.setTitle("주소록");
 		frame.setBounds(100, 100, 623, 465);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		

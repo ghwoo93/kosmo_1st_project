@@ -16,7 +16,6 @@ public class PanelBottom extends JPanel{
 	
 	private JButton btnSave;
 	private JButton btnExit;
-	private JButton btnAdd;
 	private Image img;
 	
 	AddressBookLogic logic = AddressBookLogic.getInstance();
@@ -45,7 +44,6 @@ public class PanelBottom extends JPanel{
 					.createImage("src/addressbook/image/P0i72.gif");
 		btnSave = new JButton("Save");
 		btnExit = new JButton("Exit");
-		btnAdd = new JButton("Add");
 		this.add(btnSave);
 		this.add(btnExit);
 		btnSave.addActionListener(handler);

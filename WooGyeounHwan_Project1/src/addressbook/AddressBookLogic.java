@@ -92,9 +92,15 @@ public class AddressBookLogic {
 			System.out.println("주소록이 가득 찼습니다.");
 			return;
 		}
-		if(!searchByName(inName).equals(null)) {
-			throw new NameException("존재하는 이름입니다");
+		
+		Set<Character> keys = addressBook.keySet();
+		for (Character key : keys) {
+			for (Address address : addressBook.get(key)) {
+				if(address.getName().equals(inName))
+					throw new NameException("존재하는 이름입니다.");
+			}
 		}
+		
 		String name = CommonUtilities.isName(inName);
 		String addr = CommonUtilities.isAddr(inAddr);
 		int age=0;
@@ -111,7 +117,6 @@ public class AddressBookLogic {
 			addrListByInit = addressBook.get(key);
 		}
 		
-//		Address address = new Address.Builder(name, addr).build();
 		addrListByInit.add(new Address.Builder(name, addr).setAge(age).setContact(con).build());
 		addressBook.put(key, addrListByInit);
 	}
@@ -157,7 +162,7 @@ public class AddressBookLogic {
 		}else throw new NameException("존재하지 않는 이름입니다");
 	}
 	//이름으로 검색
-	public Address searchByName(String name) throws NameException  {
+	public Address searchByName(String name) throws NameException {
 		String inputName = CommonUtilities.isName(name);
 		char key = CommonUtilities.getFirstCharacter(inputName);
 		for (Address address : addressBook.get(key)) {

@@ -47,7 +47,7 @@ public class PanelDelete extends JPanel{
 				tfCon.setText(addr.getContact());
 				JOptionPane
 					.showConfirmDialog(
-							null, tfName.getText()+" 삭제완료", "삭제 확인", 
+							tfAddr, tfName.getText()+" 삭제완료", "삭제 확인", 
 							JOptionPane.CLOSED_OPTION);
 				}
 		}

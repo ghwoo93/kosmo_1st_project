@@ -57,7 +57,7 @@ public class PanelUpdate extends JPanel{
 				addr.setAge(Integer.parseInt(tfAge.getText()));
 				addr.setContact(tfCon.getText());
 				JOptionPane
-					.showConfirmDialog(null, tfName.getText()+" 수정 완료", "수정 확인", JOptionPane.CLOSED_OPTION);
+					.showConfirmDialog(tfAddr, tfName.getText()+" 수정 완료", "수정 확인", JOptionPane.CLOSED_OPTION);
 			}
 		}
 	};
