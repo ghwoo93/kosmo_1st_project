@@ -13,29 +13,32 @@ import addressbook.Address;
 import addressbook.AddressBookLogic;
 
 public class panelUpdate extends JPanel{
-	JLabel labelName;
-	JLabel labelAddr;
-	JLabel labelAge;
-	JLabel labelCon;
-	JLabel labelNotice;
+	private JLabel labelName;
+	private JLabel labelAddr;
+	private JLabel labelAge;
+	private JLabel labelCon;
+	private JLabel labelNotice;
 	
-	JTextField tfName;
-	JTextField tfAddr;
-	JTextField tfAge;
-	JTextField tfCon;
+	private JTextField tfName;
+	private JTextField tfAddr;
+	private JTextField tfAge;
+	private JTextField tfCon;
 	
-	JButton btnUp;
-	JButton btnSearch;
+	private JButton btnUp;
+	private JButton btnSearch;
 	
-	Address addr;
+	private Address addr;
 	
-	AddressBookLogic logic = AddressBookLogic.getInstance();
+	private AddressBookLogic logic = AddressBookLogic.getInstance();
 	
 	ActionListener handler = new ActionListener() {
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			if(e.getSource()==btnSearch) {
 				addr = logic.searchByName(tfName.getText());
+				tfAddr.setText(addr.getAddress());
+				tfAge.setText(Integer.valueOf(addr.getAge()).toString());
+				tfCon.setText(addr.getContact());
 			}else if(e.getSource()==btnUp) {
 				addr.setAddress(tfAddr.getText());
 				addr.setAge(Integer.parseInt(tfAge.getText()));

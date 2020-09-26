@@ -12,9 +12,9 @@ import addressbook.AddressBookLogic;
 
 public class panelBottom extends JPanel{
 	
-	JButton btnSave;
-	JButton btnExit;
-	JButton btnAdd;
+	private JButton btnSave;
+	private JButton btnExit;
+	private JButton btnAdd;
 	
 	AddressBookLogic logic = AddressBookLogic.getInstance();
 	

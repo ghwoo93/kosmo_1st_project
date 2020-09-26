@@ -67,24 +67,6 @@ public class CommonUtilities {
 			if(init>=startChar[i] && init<=endChar[i])
 				return returnChar[i];
 		}
-		//방법2
-		/*
-		if(init>='가'&& init<'나') return 'ㄱ';
-		else if(init>='나'&& init<'다') return 'ㄴ';
-		else if(init>='다'&& init<'라') return 'ㄷ';
-		else if(init>='라'&& init<'마') return 'ㄹ';
-		else if(init>='마'&& init<'바') return 'ㅁ';
-		else if(init>='바'&& init<'사') return 'ㅂ';
-		else if(init>='사'&& init<'아') return 'ㅅ';
-		else if(init>='아'&& init<'자') return 'ㅇ';
-		else if(init>='자'&& init<'차') return 'ㅈ';
-		else if(init>='차'&& init<'카') return 'ㅊ';
-		else if(init>='카'&& init<'타') return 'ㅋ';
-		else if(init>='타'&& init<'파') return 'ㅌ';
-		else if(init>='파'&& init<'하') return 'ㅍ';
-		else if(init>='하'&& init<='힣') return 'ㅎ';
-		*/
-		//초성이 한글이 아닌 경우 0을 반환
 		return '0';
 	}
 

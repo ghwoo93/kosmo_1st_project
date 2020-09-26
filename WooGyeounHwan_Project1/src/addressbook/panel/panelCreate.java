@@ -12,17 +12,17 @@ import javax.swing.JTextField;
 import addressbook.AddressBookLogic;
 
 public class panelCreate extends JPanel{
-	JLabel labelName;
-	JLabel labelAddr;
-	JLabel labelAge;
-	JLabel labelCon;
+	private JLabel labelName;
+	private JLabel labelAddr;
+	private JLabel labelAge;
+	private JLabel labelCon;
 	
-	JTextField tfName;
-	JTextField tfAddr;
-	JTextField tfAge;
-	JTextField tfCon;
+	private JTextField tfName;
+	private JTextField tfAddr;
+	private JTextField tfAge;
+	private JTextField tfCon;
 	
-	JButton btnSave;
+	private JButton btnSave;
 	
 	AddressBookLogic logic = AddressBookLogic.getInstance();
 	
