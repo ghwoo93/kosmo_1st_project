@@ -229,12 +229,14 @@ public class AddressBookLogic {
 				break;
 			case 5://연락처
 				//연락처 유효성 체크
-				CommonUtilities.isContact(searchTf);
 				keys = addressBook.keySet();
 				for (Character key : keys) {
+					System.out.println(key);
 					for (Address address : addressBook.get(key)) {
-						if(address.getContact().equals(searchTf))
+						if(address.getContact()!=null&&address.getContact().equals(searchTf)) {
 							resultList.add(address);
+						}
+						
 					}
 				}
 				break;

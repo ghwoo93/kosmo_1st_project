@@ -9,12 +9,12 @@ import addressbook.panel.MyFrame;
 public class AddressBookApp {
 	public static void main(String[] args) throws NumberFormatException, IOException {
 		AddressBookLogic logic = AddressBookLogic.getInstance();
-		while(true) {
+//		while(true) {
 //			logic.printMainMenu();
 //			int inputMenuNum = logic.getMenuNumber();
 //			logic.separateMainMenu(inputMenuNum);
-			new MyFrame();
-		}
+//		}
+		new MyFrame();
 //		logic.loadAddr();
 	}
 }

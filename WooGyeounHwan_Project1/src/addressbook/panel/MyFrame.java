@@ -22,18 +22,18 @@ public class MyFrame {
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					MyFrame window = new MyFrame();
-					window.frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
+//	public static void main(String[] args) {
+//		EventQueue.invokeLater(new Runnable() {
+//			public void run() {
+//				try {
+//					MyFrame window = new MyFrame();
+//					window.frame.setVisible(true);
+//				} catch (Exception e) {
+//					e.printStackTrace();
+//				}
+//			}
+//		});
+//	}
 
 	public MyFrame() {
 		initialize();
@@ -44,6 +44,7 @@ public class MyFrame {
 		frame.setTitle("주소록");
 		frame.setBounds(100, 100, 623, 465);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setVisible(true);
 		
 		bottomP = new PanelBottom();
 		tabbedPane = new JTabbedPane(JTabbedPane.TOP);
