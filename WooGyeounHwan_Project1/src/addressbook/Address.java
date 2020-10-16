@@ -6,6 +6,10 @@ import common.utility.CommonUtilities;
 //주소를 상속받는 도로명주소와 지번주소
 //빌더 패턴 추가
 public class Address implements Comparable<Address>,Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 3379715247003786044L;
 	//1]멤버 변수는 private으로
 	//필수 항목
 	private String name;

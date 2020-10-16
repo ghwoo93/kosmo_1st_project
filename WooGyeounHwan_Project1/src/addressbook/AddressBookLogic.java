@@ -6,15 +6,12 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-import java.io.OutputStream;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Scanner;
 import java.util.Set;
 import java.util.Vector;
-import java.util.regex.Pattern;
 
 import addressbook.exception.NotAddr;
 import addressbook.exception.NotAge;
@@ -28,7 +25,6 @@ import common.utility.CommonUtilities;
  */
 public class AddressBookLogic {
 	private static Map<Character,List<Address>> addressBook;
-	private static Scanner sc;
 	private static int maxVal=50;
 	
 	private AddressBookLogic() {
