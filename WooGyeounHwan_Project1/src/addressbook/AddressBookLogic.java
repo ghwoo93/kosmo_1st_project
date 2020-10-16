@@ -231,12 +231,10 @@ public class AddressBookLogic {
 				//연락처 유효성 체크
 				keys = addressBook.keySet();
 				for (Character key : keys) {
-					System.out.println(key);
 					for (Address address : addressBook.get(key)) {
 						if(address.getContact()!=null&&address.getContact().equals(searchTf)) {
 							resultList.add(address);
 						}
-						
 					}
 				}
 				break;
@@ -246,7 +244,6 @@ public class AddressBookLogic {
 
 	//9.종료
 	public void exitAddrBook() {
-		System.out.println("프로그램을 종료합니다");
 		System.exit(0);
 	}
 }

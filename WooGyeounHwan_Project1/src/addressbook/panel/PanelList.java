@@ -89,9 +89,9 @@ public class PanelList extends JPanel{
 				} catch (
 						NotInit | NameException | NotAddr | NotAge | NotContact e1) {
 					JOptionPane
-					.showConfirmDialog(
-							table, e1.getMessage(),"입력 오류",
-							JOptionPane.CLOSED_OPTION,JOptionPane.ERROR_MESSAGE);
+						.showConfirmDialog(
+								table, e1.getMessage(),"입력 오류",
+								JOptionPane.CLOSED_OPTION,JOptionPane.ERROR_MESSAGE);
 				}
 			}
 		});
@@ -169,7 +169,6 @@ public class PanelList extends JPanel{
 	//케이스 별로 체크해서 목록에 뿌리기
 	public void searchAddrs(Object searchColumn,String searchTf) 
 			throws NotInit, NameException, NotAddr, NotAge, NotContact  {
-//		System.out.println(searchColumn+":"+searchTf);
 		Vector<String> addrRow=null;
 		for(Address addr :logic.searchAddrBook(searchColumn, searchTf)) {
 			addrRow = new Vector<String>();

@@ -8,6 +8,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 import addressbook.AddressBookLogic;
@@ -31,7 +32,17 @@ public class PanelBottom extends JPanel{
 					System.out.println("저장 완료 실패");
 				}
 			}else if(e.getSource()==btnExit) {
-				logic.exitAddrBook();
+				/*
+				 * showConfirmDialog(Component parentComponent, 
+				 * Object message, 
+				 * String title, 
+				 * int optionType, 
+				 * int messageType)
+				 */
+				int flag = 
+						JOptionPane.showConfirmDialog(btnExit, "정말 종료하시겠습니까?", "종료", JOptionPane.YES_NO_OPTION);
+				if(flag==0) logic.exitAddrBook();
+				
 			}
 		}
 	};
